@@ -41,19 +41,30 @@ for (var i = 1; i < 101; i++) {
   h3.id = "accusation" + [i];
   h3.innerHTML = "Accusation " + [i];
   div.appendChild(h3);
-  clickAccusation();
+  function accuse() {
+    var clueNumber = i;
+    var friend = friends[i % 5];
+    var location = locations[i % 10];
+    var weapon = weapons[i % 20];
+    return function() {
+      console.log(
+        `Accusation ${clueNumber} friend ${friend}, location ${location}, weapon ${weapon}`
+      );
+    };
+  }
+  clickAccusation = accuse();
+  h3.addEventListener("click", clickAccusation);
 }
 
-function clickAccusation() {
-  h3.addEventListener("click", function(e) {
-    accusationNo = e.target.innerHTML;
-    var f = Math.floor(Math.random() * (5 - 1 + 1) + 1);
-    var w = Math.floor(Math.random() * (20 - 1 + 1) + 1);
-    var l = Math.floor(Math.random() * (10 - 1 + 1) + 1);
+// function clickAccusation(i) {
+//   h3.addEventListener("click", function(e) {
+//     accusationNo = e.target.innerHTML;
+//     var f = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+//     var w = Math.floor(Math.random() * (20 - 1 + 1) + 1);
+//     var l = Math.floor(Math.random() * (10 - 1 + 1) + 1);
 
-    Swal.fire(
-      `${accusationNo}: I accuse ${friends[f]}, with ${weapons[w]} on ${locations[l]}`
-    );
-  });
-}
-got;
+//     Swal.fire(
+//       `${accusationNo}: I accuse ${friends[f]}, with ${weapons[w]} on ${locations[l]}`
+//     );
+//   });
+// }
