@@ -47,8 +47,8 @@ for (var i = 1; i < 101; i++) {
     var location = locations[i % 10];
     var weapon = weapons[i % 20];
     return function() {
-      console.log(
-        `Accusation ${clueNumber} friend ${friend}, location ${location}, weapon ${weapon}`
+      Swal.fire(
+        `Accusation ${clueNumber}: I accuse ${friend}, with the ${weapon} in the ${location}!`
       );
     };
   }
